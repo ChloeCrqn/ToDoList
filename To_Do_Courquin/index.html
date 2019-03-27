@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>To Do List - Courquin</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+
+	<body>
+		<h3> Ma belle TODO List </h3>
+		<input type="text" name="toDo" id="todo">
+		<button class="btn btn-primary" id="add"> Ajouter </button>
+
+
+		<table id="task">
+			<th>Numéro</th>
+			<th>Date</th>
+			<th>Tâche</th>
+			<th>Utilisateur</th>
+			<th>Action</th>
+			<span id="rowdata"></span>
+
+		</table>
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span id="closeModal">&times; | Modification de la tâche</span>
+				<input type="text" id="textToChange" />
+				<button id="changeText"> Sauvegarder</button>
+			</div>
+
+		</div>
+
+		<div id="myModalConfirm" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span id="closeModal">Etes-vous sur de vouloir supprimer la tâche | &times;</span>
+				<button id="annuler"> Non </button>
+				<button id="confirm"> Oui </button>
+			</div>
+
+		</div>
+
+		<div id="myModalUser" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="tab">
+					<button class="tablinks" id="gestionUser" onclick="openCity(event, 'userAddElement')">Gestion Utilisateur</button>
+					<button class="tablinks" id="donnerTask"onclick="openCity(event, 'userListElement')">Attribution tâche utilisateur</button>
+					<button class="tablinks" onclick="openCity(event, 'userUpdateElement')">Mise à jour utilisateurs</button>
+				</div>
+
+				<!-- Tab content -->
+				<div id="userAddElement" class="tabcontent">
+					<h3>Gestion Utilisateur</h3>
+					<div>
+						<p>Liste utilisateurs : </p>
+						<table id="listUser">
+
+						</table>
+					</div>
+				</div>
+
+				<div id="userListElement" class="tabcontent">
+					<h3>Attribution tâche utilisateur</h3>
+					<p>Attribuer la tâche a l'utilisateurs : </p>
+					<select id="userList">
+
+					</select>
+					<button id="shareTask"> Attribuer</button>
+				</div>
+
+				<div id="userUpdateElement" class="tabcontent">
+					<h3>Mise à jour utilisateurs</h3>
+					<p>Tokyo is the capital of Japan.</p>
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<!-- Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+		<script>
+			function openCity(evt, cityName) {
+				var i, tabcontent, tablinks;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+					tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+				document.getElementById(cityName).style.display = "block";
+				evt.currentTarget.className += " active";
+			}
+		</script>
+	</body>
+
+</html>

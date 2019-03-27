@@ -1,0 +1,46 @@
+console.log("user");
+		var myId = this.getAttribute("data-id");
+		$.ajax({
+    		type: "GET",
+    		url: "controler/get_user.php",
+    		dataType: "json",
+			success: function(json) {
+				console.log(json);
+				$("#mySelect").empty();
+				var mySelectElement = document.getElementById("mySelect");
+					var firstOption = document.createElement("option");
+					firstOption.text = "";
+					mySelectElement.appendChild(firstOption);	
+				for(var i=0; i<json.length;i++){
+					var option = document.createElement("option");
+					option.text = json[i].nom;
+					mySelectElement.appendChild(option);
+				}
+				var myModalElement = document.getElementById("myModalUser");
+					myModalElement.style.display = "block";
+
+				$("body").on("click","#annulerUser",function(){
+					myModalElement.style.display = "none";
+				});
+
+				
+				$("body").on("click","#confirmerUser",function(){
+					// myModalElement.style.display = "";
+					var mySelectElement = document.getElementById("mySelect");
+					var user = mySelectElement.value;
+					
+					$.ajax({
+						type: "GET",
+						url: "controler/add_user.php",
+						data:{user:user,
+							  id:myId
+							},
+						dataType: "json",
+						success: function(json) {
+							myModalElement.style.display = "none";
+							refreshTodo();
+						}
+					});
+				});
+			 }
+		});
